@@ -6,12 +6,29 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@thirdweb-dev/react": "^4.9.4",
+    "@thirdweb-dev/sdk": "^4.0.99",
+    "nodemon": "^3.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.23.1",
+    "assert": "^2.0.0",
+    "browserify-zlib": "latest",
+    "ethers": "^5",
+    "http": "npm:http-browserify",
+    "http-browserify": "latest",
+    "https": "npm:https-browserify",
+    "https-browserify": "latest",
+    "react-scripts": "^5.0.1",
+    "stream": "^0.0.2",
+    "url": "latest",
+    "web-vitals": "^3.1.0",
+    "zlib": "npm:browserify-zlib"
+
+    
   },
   "scripts": {
+    "nodemon": "nodemon",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
