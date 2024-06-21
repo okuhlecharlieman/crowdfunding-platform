@@ -1,8 +1,8 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { createThirdwebClient, getContract, resolveMethod } from "thirdweb";
+import { createThirdwebClient, getContract } from "thirdweb";
 import { defineChain } from "thirdweb/chains";
 
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateProjectComponent from './component/CreateProjectComponent';
