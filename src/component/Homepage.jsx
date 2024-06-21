@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createThirdwebClient } from "thirdweb";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import createProjectImg from "../img/lightbulb.jpeg";
 import contributeImg from "../img/Plant.jpeg";
@@ -22,11 +21,11 @@ export const client = createThirdwebClient({
 
 function HomePage({ contract }) {
   const address = useAddress();
-  const connect = useMetamask();
-  const { login } = useLogin();
+ // const connect = useMetamask();
+ // const { login } = useLogin();
   const { logout } = useLogout();
-  const { user, isLoggedIn } = useUser();
-  const navigate = useNavigate();
+ // const { user, isLoggedIn } = useUser();
+ // const navigate = useNavigate();
 
   const handleConnectWallet = () => {
     //navigate("/home");
