@@ -29,7 +29,7 @@ function HomePage({ contract }) {
   const navigate = useNavigate();
 
   const handleConnectWallet = () => {
-    navigate("/home");
+    //navigate("/home");
   };
 
   
