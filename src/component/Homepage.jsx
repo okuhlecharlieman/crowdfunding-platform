@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createThirdwebClient } from "thirdweb";
-// import { useNavigate } from "react-router-dom";
 import createProjectImg from "../img/lightbulb.jpeg";
 import contributeImg from "../img/Plant.jpeg";
 import browseProjectsImg from "../img/browse.jpeg";
@@ -10,8 +9,8 @@ import {
   useAddress,
   //useMetamask,
   //useLogin,
-  useLogout,
-  useUser,
+  //useLogout, // Not needed
+  //useUser,
   ConnectWallet,
 } from "@thirdweb-dev/react";
 
@@ -21,20 +20,30 @@ export const client = createThirdwebClient({
 
 function HomePage({ contract }) {
   const address = useAddress();
- // const connect = useMetamask();
- // const { login } = useLogin();
-  const { logout } = useLogout();
-  const {  isLoggedIn } = useUser();
- // const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+
+  // Load user data from local storage on component mount
+  useEffect(() => {
+    const storedAddress = localStorage.getItem("walletAddress");
+    if (storedAddress) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleConnectWallet = () => {
-    //navigate("/home");
+    // Store the wallet address in local storage
+    localStorage.setItem("walletAddress", address);
+    setIsLoggedIn(true);
   };
 
-  
+  const handleLogout = () => {
+    // Clear wallet address from local storage
+    localStorage.removeItem("walletAddress");
+    setIsLoggedIn(false);
+  };
 
   return (
-    <div style={{ backgroundColor: "#1a237e", color: "#b3b3b3" }}> 
+    <div style={{ backgroundColor: "#1a237e", color: "#b3b3b3" }}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container">
           <a className="navbar-brand" href="/">
@@ -72,11 +81,12 @@ function HomePage({ contract }) {
             <div className="text-center">
               {isLoggedIn ? (
                 <button
-                  onClick={() => logout()}
+                  onClick={handleLogout} // Call the handleLogout function
                   className="btn btn-light rounded"
                   style={{ backgroundColor: "#1a237e", color: "#b3b3b3" }}
                 >
-                  Logout
+                 {/* Display the wallet address */}
+                 Wallet: {address}
                 </button>
               ) : address ? (
                 <button
@@ -84,7 +94,7 @@ function HomePage({ contract }) {
                   className="btn btn-light rounded"
                   style={{ backgroundColor: "#1a237e", color: "#b3b3b3" }}
                 >
-                  Continue
+                  Connect Wallet
                 </button>
               ) : (
                 <ConnectWallet />
@@ -95,12 +105,17 @@ function HomePage({ contract }) {
       </nav>
 
       <div className="container mt-5 d-flex flex-column align-items-center">
-      <h1 className="mb-4">Welcome to the Crowdfunding Platform</h1>
+        <h1 className="mb-4">Welcome to the Crowdfunding Platform</h1>
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card mb-3">
               <div className="card-body">
-                <img src={createProjectImg} alt="Create Project" className="mb-3" style={{ width: "100%" }} />
+                <img
+                  src={createProjectImg}
+                  alt="Create Project"
+                  className="mb-3"
+                  style={{ width: "100%" }}
+                />
                 <h5 className="card-title">Create a Project</h5>
                 <p className="card-text">
                   Start a new project and raise funds from the community.
@@ -114,7 +129,12 @@ function HomePage({ contract }) {
           <div className="col-md-6">
             <div className="card mb-3">
               <div className="card-body">
-                <img src={contributeImg} alt="Contribute" className="mb-3" style={{ width: "100%" }} />
+                <img
+                  src={contributeImg}
+                  alt="Contribute"
+                  className="mb-3"
+                  style={{ width: "100%" }}
+                />
                 <h5 className="card-title">Contribute to a Project</h5>
                 <p className="card-text">
                   Support existing projects and help them reach their goals.
@@ -130,7 +150,12 @@ function HomePage({ contract }) {
           <div className="col-md-6">
             <div className="card mb-3">
               <div className="card-body">
-                <img src={browseProjectsImg} alt="Browse Projects" className="mb-3" style={{ width: "100%" }} />
+                <img
+                  src={browseProjectsImg}
+                  alt="Browse Projects"
+                  className="mb-3"
+                  style={{ width: "100%" }}
+                />
                 <h5 className="card-title">Browse Projects</h5>
                 <p className="card-text">
                   Discover exciting projects and find opportunities to invest.
