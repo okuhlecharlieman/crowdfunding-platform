@@ -24,7 +24,7 @@ function HomePage({ contract }) {
  // const connect = useMetamask();
  // const { login } = useLogin();
   const { logout } = useLogout();
- // const { user, isLoggedIn } = useUser();
+  const {  isLoggedIn } = useUser();
  // const navigate = useNavigate();
 
   const handleConnectWallet = () => {
