@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createThirdwebClient } from "thirdweb";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import createProjectImg from "../img/lightbulb.jpeg";
 import contributeImg from "../img/Plant.jpeg";
 import browseProjectsImg from "../img/browse.jpeg";
 
 import {
   useAddress,
-  useMetamask,
-  useLogin,
+  //useMetamask,
+  //useLogin,
   useLogout,
   useUser,
   ConnectWallet,
